@@ -345,11 +345,17 @@ static const void *BlankButtonTitleKey      = &BlankButtonTitleKey;
 {
     _subTitle = subTitle;
     _errorSubLabel.text = subTitle;
-    [_errorSubLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self);
-        make.height.equalTo(@20);
-        make.top.equalTo(_errorTipLabel.mas_bottom).offset(15);
-    }];
+    
+    if (subTitle) {
+        [self addSubview:_errorSubLabel];
+        [_errorSubLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self);
+            make.height.equalTo(@20);
+            make.top.equalTo(_errorTipLabel.mas_bottom).offset(15);
+        }];
+    }else{
+        [_errorSubLabel removeFromSuperview];
+    }
     [self setNeedsDisplay];
 }
 
@@ -357,16 +363,23 @@ static const void *BlankButtonTitleKey      = &BlankButtonTitleKey;
 {
     _buttonTitle = buttonTitle;
     [_reloadButton setTitle:buttonTitle forState:UIControlStateNormal];
-    [_reloadButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(120);
-        make.height.mas_equalTo(30);
-        make.centerX.equalTo(self);
-        if (_subTitle) {
-            make.top.equalTo(_errorSubLabel.mas_bottom).offset(15);
-        }else{
-            make.top.equalTo(_errorTipLabel.mas_bottom).offset(15);
-        }
-    }];
+
+    if (buttonTitle) {
+        [self addSubview:_reloadButton];
+        [_reloadButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(120);
+            make.height.mas_equalTo(30);
+            make.centerX.equalTo(self);
+            if (_subTitle) {
+                make.top.equalTo(_errorSubLabel.mas_bottom).offset(15);
+            }else{
+                make.top.equalTo(_errorTipLabel.mas_bottom).offset(15);
+            }
+        }];
+    }else{
+        [_reloadButton removeFromSuperview];
+    }
+    
     [self setNeedsDisplay];
 }
 

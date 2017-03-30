@@ -80,6 +80,11 @@ static int temp = 0;
 
 - (void)dealloc
 {
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
     [self.segmentedControl removeFromSuperview];
     [self.stepper removeFromSuperview];
 }
@@ -91,9 +96,12 @@ static int temp = 0;
         switch (temp) {
             case 0:
                 self.view.blankPreTitle = @"空数据页";//这一行注释掉会显示默认值
+                self.view.blankSubTitle = nil;
+                self.view.blankButtonTitle = nil;
                 break;
             case 1:
                 self.view.blankSubTitle = self.dict[SUBTITLE];
+                self.view.blankButtonTitle = nil;
                 break;
             case 2:
                 self.view.blankSubTitle = self.dict[SUBTITLE];
@@ -111,9 +119,12 @@ static int temp = 0;
         switch (temp) {
             case 0:
                 self.view.errorPreTitle = @"错误页";//这一行注释掉会显示默认值
+                self.view.errorSubTitle = nil;
+                self.view.errorButtonTitle = nil;
                 break;
             case 1:
                 self.view.errorSubTitle = self.dict[SUBTITLE];
+                self.view.errorButtonTitle = nil;
                 break;
             case 2:
                 self.view.errorSubTitle = self.dict[SUBTITLE];
