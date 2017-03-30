@@ -75,10 +75,12 @@
 {
     if (indexPath.row == 3) {
         CommonViewController *subVC = [[CommonViewController alloc]init];
+        subVC.title = dataArray[indexPath.row];
         [self.navigationController pushViewController:subVC animated:YES];
     }else{
         ShowViewController *subVC = [[ShowViewController alloc]init];
         subVC.index = indexPath.row;
+        subVC.title = dataArray[indexPath.row];
         [self.navigationController pushViewController:subVC animated:YES];
     }
 }
