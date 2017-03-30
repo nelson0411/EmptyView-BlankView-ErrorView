@@ -20,7 +20,7 @@
     // Do any additional setup after loading the view.
     
     //-----type 1-----
-    //show的顺序跟
+    //show的位置放哪里都可以，无所谓。
     //[self.view showBlankPageView];
     [self.view showErrorPageView];
     
